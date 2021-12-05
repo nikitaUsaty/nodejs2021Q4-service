@@ -1,8 +1,12 @@
-const fastify = require('fastify')();
+const fastify = require('fastify')({
+  logger: true,
+});
 
 const { PORT } = require('./common/config');
 
 fastify.register(require('./resources/users/user.router'));
+
+fastify.register(require('./resources/board/board.router'));
 
 fastify.listen(PORT, (err, address) => {
   if (err) {

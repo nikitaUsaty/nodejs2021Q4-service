@@ -1,18 +1,16 @@
-const usersService = require('./user.service');
+const boardService = require('./board.service');
 
 async function routes(fastify) {
-  fastify.get('/', async () => 'Welcome');
-
-  fastify.get('/users', async () => {
-    const result = await usersService.getAllUsers();
+  fastify.get('/boards', async () => {
+    const result = await boardService.getAllBoards();
     if (!result) {
       throw new Error('Error, no users data');
     }
     return result;
   });
 
-  fastify.get('/users/:id', async (request, reply) => {
-    const result = await usersService.getUserWithId(request.params.id);
+  fastify.get('/boards/:id', async (request, reply) => {
+    const result = await boardService.getBoardWithId(request.params.id);
     if (!result) {
       reply
         .status(404)
@@ -21,8 +19,8 @@ async function routes(fastify) {
     return result;
   });
 
-  fastify.post('/users', async (request, reply) => {
-    const result = await usersService.createNewUser(request.body);
+  fastify.post('/boards', async (request, reply) => {
+    const result = await boardService.createNewBoard(request.body);
     reply.code(201);
     if (!result) {
       throw new Error('Error, no users data');
@@ -30,8 +28,8 @@ async function routes(fastify) {
     return result;
   });
 
-  fastify.put('/users/:id', async (request, reply) => {
-    const result = await usersService.updateUser(
+  fastify.put('/boards/:id', async (request, reply) => {
+    const result = await boardService.updateBoard(
       request.params.id,
       request.body
     );
@@ -43,8 +41,8 @@ async function routes(fastify) {
     return result;
   });
 
-  fastify.delete('/users/:id', async (request, reply) => {
-    const result = await usersService.removeUser(request.params.id);
+  fastify.delete('/boards/:id', async (request, reply) => {
+    const result = await boardService.removeBoard(request.params.id);
     if (!result) {
       reply
         .status(404)

@@ -14,7 +14,7 @@ async function routes(fastify) {
     if (!result) {
       reply
         .status(404)
-        .send(new Error(`No user with id ${request.params.id} was found`));
+        .send(new Error(`No board with id ${request.params.id} was found`));
     }
     return result;
   });
@@ -23,7 +23,7 @@ async function routes(fastify) {
     const result = await boardService.createNewBoard(request.body);
     reply.code(201);
     if (!result) {
-      throw new Error('Error, no users data');
+      throw new Error('Error, no board data');
     }
     return result;
   });
@@ -36,7 +36,7 @@ async function routes(fastify) {
     if (!result) {
       reply
         .status(404)
-        .send(new Error(`No user with id ${request.params.id} was found`));
+        .send(new Error(`No board with id ${request.params.id} was found`));
     }
     return result;
   });
@@ -46,7 +46,7 @@ async function routes(fastify) {
     if (!result) {
       reply
         .status(404)
-        .send(new Error(`No user with id ${request.params.id} was found`));
+        .send(new Error(`No board with id ${request.params.id} was found`));
     }
     return result;
   });

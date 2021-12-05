@@ -8,6 +8,8 @@ fastify.register(require('./resources/users/user.router'));
 
 fastify.register(require('./resources/board/board.router'));
 
+fastify.register(require('./resources/task/task.router'));
+
 fastify.listen(PORT, (err, address) => {
   if (err) {
     fastify.log.error(err);

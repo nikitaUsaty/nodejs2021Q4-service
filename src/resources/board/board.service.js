@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 const { v4: uuidv4 } = require('uuid');
 const board = require('./board.memory.repository');
 
@@ -24,7 +23,7 @@ const createNewBoard = (user) => {
 const updateBoard = (id, body) => {
   const userToUpdate = board.find((user) => user.id === id);
   if (!userToUpdate) {
-    return;
+    return false;
   }
   const updatePerson = body;
   updatePerson.id = id;
@@ -39,10 +38,10 @@ const updateBoard = (id, body) => {
 const removeBoard = (id) => {
   const userToDelete = board.find((user) => user.id === id);
   if (!userToDelete) {
-    return;
+    return false;
   }
   board.splice(board.indexOf(userToDelete), 1);
-  return `User with id ${id} has been deleted!`;
+  return `Board with id ${id} has been deleted!`;
 };
 
 module.exports = {

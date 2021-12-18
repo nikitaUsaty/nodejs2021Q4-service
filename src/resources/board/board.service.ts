@@ -1,9 +1,9 @@
 import ITask from '../task/task.memory.repository';
-import IBoard from '../board/board.memory.repository';
+import IBoard from './board.memory.repository';
 
 const { v4: uuidv4 } = require('uuid');
 const tasks = require('../task/task.memory.repository');
-const boards = require('../board/board.memory.repository');
+const boards = require('./board.memory.repository');
 
 const getAllBoards = () => boards;
 
@@ -48,7 +48,7 @@ const removeBoard = (id: string) => {
   }
   const tasksToDelete: ITask[] = [];
 
-  for (let i = 0; i < tasks.length; i++) {
+  for (let i = 0; i < tasks.length; i += 1) {
     if (tasks[i].boardId === id) {
       tasksToDelete.push(tasks[i]);
     }

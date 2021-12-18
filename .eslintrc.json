@@ -6,19 +6,22 @@
     "jest": true,
     "node": true
   },
-  "parser": "@babel/eslint-parser",
+  // "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2021,
     "ecmaFeatures": {
       "impliedStrict": true
-    },
-
-    "babelOptions": {
-      "plugins": ["@babel/plugin-proposal-class-properties"]
     }
   },
   "settings": {
+    "import/resolver": {
+      "node": {
+        "resolvePaths": ["node_modules/@types"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "tryExtensions": [".js", ".json", ".node", ".ts", ".d.ts"]
+      }
+    },
     "noInlineConfig": true
   },
   "extends": [
@@ -26,14 +29,19 @@
     "plugin:node/recommended",
     "airbnb-base",
     "prettier",
-    "plugin:prettier/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "node/no-missing-import": "off",
+    "node/no-missing-require": "off",
+    "import/no-import-module-exports": "off",
     "import/extensions": "off",
     "linebreak-style": "off",
     "node/no-unsupported-features/es-syntax": "off",
     "no-underscore-dangle": "off",
     "import/prefer-default-export": "off",
-    "no-param-reassign": 0
+    "@typescript-eslint/no-explicit-any": 2,
+    "@typescript-eslint/no-var-requires": 0,
+    "no-unused-expressions": "off"
   }
 }

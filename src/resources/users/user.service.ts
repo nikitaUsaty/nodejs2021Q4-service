@@ -1,8 +1,9 @@
-export {};
 import IUser from './user.memory.repository';
 
+export {};
+
 const { v4: uuidv4 } = require('uuid');
-const users = require('../users/user.memory.repository');
+const users = require("./user.memory.repository");
 const tasks = require('../task/task.memory.repository');
 
 const getAllUsers = () => users;

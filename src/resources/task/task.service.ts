@@ -1,7 +1,8 @@
-import ITask from '../task/task.memory.repository';
+import ITask from './task.memory.repository';
+
 const { v4: uuidv4 } = require('uuid');
 
-const tasks = require('../task/task.memory.repository');
+const tasks = require('./task.memory.repository');
 
 const getAllTasks = () => tasks;
 
@@ -32,7 +33,9 @@ const updateTask = (idd: string, body: ITask) => {
 
   const index = tasks.findIndex((task: ITask) => {
     task.id === idd;
+    return true;
   });
+  
   tasks[index] = {
     ...updatedTask,
   };

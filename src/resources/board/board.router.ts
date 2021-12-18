@@ -1,6 +1,8 @@
+import { FastifyInstance, FastifyPluginOptions } from 'fastify';
+
 const boardService = require('./board.service');
 
-async function routes(fastify) {
+async function routes(fastify: FastifyInstance) {
   fastify.get('/boards', async () => {
     const result = await boardService.getAllBoards();
     if (!result) {
@@ -9,7 +11,7 @@ async function routes(fastify) {
     return result;
   });
 
-  fastify.get('/boards/:id', async (request, reply) => {
+  fastify.get('/boards/:id', async (request: FastifyPluginOptions, reply) => {
     const result = await boardService.getBoardWithId(request.params.id);
     if (!result) {
       reply
@@ -28,7 +30,7 @@ async function routes(fastify) {
     return result;
   });
 
-  fastify.put('/boards/:id', async (request, reply) => {
+  fastify.put('/boards/:id', async (request: FastifyPluginOptions, reply) => {
     const result = await boardService.updateBoard(
       request.params.id,
       request.body
@@ -41,15 +43,18 @@ async function routes(fastify) {
     return result;
   });
 
-  fastify.delete('/boards/:id', async (request, reply) => {
-    const result = await boardService.removeBoard(request.params.id);
-    if (!result) {
-      reply
-        .status(404)
-        .send(new Error(`No board with id ${request.params.id} was found`));
+  fastify.delete(
+    '/boards/:id',
+    async (request: FastifyPluginOptions, reply) => {
+      const result = await boardService.removeBoard(request.params.id);
+      if (!result) {
+        reply
+          .status(404)
+          .send(new Error(`No board with id ${request.params.id} was found`));
+      }
+      return result;
     }
-    return result;
-  });
+  );
 }
 
 module.exports = routes;

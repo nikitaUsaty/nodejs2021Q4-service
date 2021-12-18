@@ -1,5 +1,7 @@
 const fastify = require('fastify')({
-  logger: true,
+  logger: {
+    prettyPrint: true,
+  },
 });
 
 const { PORT } = require('./common/config');
@@ -10,7 +12,7 @@ fastify.register(require('./resources/board/board.router'));
 
 fastify.register(require('./resources/task/task.router'));
 
-fastify.listen(PORT, (err, address) => {
+fastify.listen(PORT, (err: string, address: string) => {
   if (err) {
     fastify.log.error(err);
     process.exit(1);

@@ -1,20 +1,26 @@
+export {};
 const { v4: uuidv4 } = require('uuid');
-const users = require('./user.memory.repository');
 
-const tasks = require('../task/task.memory.repository');
+const tasks = require('../task/task.service');
+
+export default interface IUser {
+  id: string;
+  password?: string;
+  name: string;
+  login: string;
+}
+
+const users: IUser[] = [];
 
 const getAllUsers = () => users;
 
-const getUserWithId = (id) => {
+const getUserWithId = (id: string) => {
   const user = users.find((u) => u.id === id);
   return user;
 };
 
-const createNewUser = (user) => {
-  const User = {
-    id: uuidv4(),
-    ...user,
-  };
+const createNewUser = (user: IUser) => {
+  const User = { ...user, id: uuidv4() };
   users.push(User);
   if (User.password) {
     delete User.password;
@@ -22,7 +28,10 @@ const createNewUser = (user) => {
   return User;
 };
 
-const updateUser = (id, body) => {
+const updateUser = (
+  id: string,
+  body: { id: string; name: string; login: string }
+) => {
   const userToUpdate = users.find((user) => user.id === id);
   if (!userToUpdate) {
     return false;
@@ -37,18 +46,17 @@ const updateUser = (id, body) => {
   return updatePerson;
 };
 
-const removeUser = (id) => {
+const removeUser = (id: string) => {
   const userToDelete = users.find((user) => user.id === id);
   if (!userToDelete) {
     return false;
   }
 
-  tasks.map((el) => {
-    if (el.userId === id) {
-      el.userId = null;
+  for (let i = 0; i < tasks.length; i += 1) {
+    if (tasks[i]?.userId === id) {
+      tasks[i].userId = null;
     }
-    return false;
-  });
+  }
 
   users.splice(users.indexOf(userToDelete), 1);
   return `User with id ${id} has been deleted!`;

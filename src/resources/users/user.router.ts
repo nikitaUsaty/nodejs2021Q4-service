@@ -1,8 +1,9 @@
+import { FastifyInstance, FastifyPluginOptions } from 'fastify';
+
 const usersService = require('./user.service');
 
-async function routes(fastify) {
+async function routes(fastify: FastifyInstance) {
   fastify.get('/', async () => 'Welcome');
-
   fastify.get('/users', async () => {
     const result = await usersService.getAllUsers();
     if (!result) {
@@ -11,7 +12,7 @@ async function routes(fastify) {
     return result;
   });
 
-  fastify.get('/users/:id', async (request, reply) => {
+  fastify.get('/users/:id', async (request: FastifyPluginOptions, reply) => {
     const result = await usersService.getUserWithId(request.params.id);
     if (!result) {
       reply
@@ -30,7 +31,7 @@ async function routes(fastify) {
     return result;
   });
 
-  fastify.put('/users/:id', async (request, reply) => {
+  fastify.put('/users/:id', async (request: FastifyPluginOptions, reply) => {
     const result = await usersService.updateUser(
       request.params.id,
       request.body
@@ -43,7 +44,7 @@ async function routes(fastify) {
     return result;
   });
 
-  fastify.delete('/users/:id', async (request, reply) => {
+  fastify.delete('/users/:id', async (request: FastifyPluginOptions, reply) => {
     const result = await usersService.removeUser(request.params.id);
     if (!result) {
       reply

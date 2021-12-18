@@ -1,21 +1,14 @@
 export {};
+import IUser from './user.memory.repository';
+
 const { v4: uuidv4 } = require('uuid');
-
-const tasks = require('../task/task.service');
-
-export default interface IUser {
-  id: string;
-  password?: string;
-  name: string;
-  login: string;
-}
-
-const users: IUser[] = [];
+const users = require('../users/user.memory.repository');
+const tasks = require('../task/task.memory.repository');
 
 const getAllUsers = () => users;
 
 const getUserWithId = (id: string) => {
-  const user = users.find((u) => u.id === id);
+  const user = users.find((u: IUser) => u.id === id);
   return user;
 };
 
@@ -32,14 +25,14 @@ const updateUser = (
   id: string,
   body: { id: string; name: string; login: string }
 ) => {
-  const userToUpdate = users.find((user) => user.id === id);
+  const userToUpdate = users.find((user: IUser) => user.id === id);
   if (!userToUpdate) {
     return false;
   }
   const updatePerson = body;
   updatePerson.id = id;
 
-  const index = users.findIndex((user) => user.id === id);
+  const index = users.findIndex((user: IUser) => user.id === id);
   users[index] = {
     ...updatePerson,
   };
@@ -47,7 +40,7 @@ const updateUser = (
 };
 
 const removeUser = (id: string) => {
-  const userToDelete = users.find((user) => user.id === id);
+  const userToDelete = users.find((user: IUser) => user.id === id);
   if (!userToDelete) {
     return false;
   }

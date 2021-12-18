@@ -1,18 +1,7 @@
+import ITask from '../task/task.memory.repository';
 const { v4: uuidv4 } = require('uuid');
-// const board = require('./task.memory.repository');
 
-export default interface ITask {
-  id: string;
-  title: string;
-  order: number;
-  description: string;
-  userId: string | null;
-  boardId: string;
-  columnId: string | null;
-  params: object;
-}
-
-const tasks: ITask[] = [];
+const tasks = require('../task/task.memory.repository');
 
 const getAllTasks = () => tasks;
 
@@ -33,20 +22,21 @@ const createNewTask = (task: ITask, idd: { boardId: string }) => {
 };
 
 const updateTask = (idd: string, body: ITask) => {
-  const userToUpdate = tasks.find((task: ITask) => {
-    task.id === idd;
-  });
-  if (!userToUpdate) {
+  const taskToUpdate = tasks.find((task: ITask) => task.id === idd);
+
+  if (!taskToUpdate) {
     return false;
   }
-  const updatePerson = body;
-  updatePerson.id = idd;
+  const updatedTask = body;
+  updatedTask.id = idd;
 
-  const index = tasks.findIndex((task: ITask) => task.id === idd);
+  const index = tasks.findIndex((task: ITask) => {
+    task.id === idd;
+  });
   tasks[index] = {
-    ...updatePerson,
+    ...updatedTask,
   };
-  return updatePerson;
+  return updatedTask;
 };
 
 const removeTask = (id: string, idd: string) => {

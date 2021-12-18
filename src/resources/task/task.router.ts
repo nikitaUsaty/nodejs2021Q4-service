@@ -41,12 +41,15 @@ async function routes(fastify: FastifyInstance) {
 
   fastify.put(
     '/boards/:boardId/tasks/:taskId',
-    async (request: FastifyPluginOptions, reply: FastifyPluginOptions) => {
+    async (request: FastifyPluginOptions, reply) => {
       const result = await taskService.updateTask(
         request.params.id,
         request.body,
         request.params.taskId
       );
+
+      console.log('WORk!!!!');
+
       if (!result) {
         reply
           .status(404)

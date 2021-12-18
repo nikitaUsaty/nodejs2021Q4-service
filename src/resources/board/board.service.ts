@@ -1,25 +1,14 @@
-import ITask from '../task/task.service';
+import ITask from '../task/task.memory.repository';
+import IBoard from '../board/board.memory.repository';
 
 const { v4: uuidv4 } = require('uuid');
-const tasks = require('../task/task.service');
-
-interface IColums {
-  id: string;
-  title: string;
-  order: string | number;
-}
-
-interface IBoard {
-  id: string;
-  title: string;
-  columns: IColums[];
-}
-const boards: IBoard[] = [];
+const tasks = require('../task/task.memory.repository');
+const boards = require('../board/board.memory.repository');
 
 const getAllBoards = () => boards;
 
 const getBoardWithId = (id: string) => {
-  const user = boards.find((u) => u.id === id);
+  const user = boards.find((u: IBoard) => u.id === id);
   return user;
 };
 
@@ -38,22 +27,22 @@ const createNewBoard = (board: IBoard) => {
 };
 
 const updateBoard = (id: string, body: IBoard) => {
-  const userToUpdate = boards.find((board) => board.id === id);
+  const userToUpdate = boards.find((board: IBoard) => board.id === id);
   if (!userToUpdate) {
     return false;
   }
-  const updatePerson = body;
-  updatePerson.id = id;
+  const updateBr = body;
+  updateBr.id = id;
 
-  const index = boards.findIndex((board) => board.id === id);
+  const index = boards.findIndex((board: IBoard) => board.id === id);
   boards[index] = {
-    ...updatePerson,
+    ...updateBr,
   };
-  return updatePerson;
+  return updateBr;
 };
 
 const removeBoard = (id: string) => {
-  const boardToDelete = boards.find((board) => board.id === id);
+  const boardToDelete = boards.find((board: IBoard) => board.id === id);
   if (!boardToDelete) {
     return false;
   }

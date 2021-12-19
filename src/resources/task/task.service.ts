@@ -47,20 +47,15 @@ const createNewTask = (task: ITask, idd: { boardId: string }) => {
  * @returns updated task
  */
 
-const updateTask = (idd: string, body: ITask) => {
+const updateTask = (_boardId: string, idd: string, body: ITask) => {
   const taskToUpdate = tasks.find((task: ITask) => task.id === idd);
-
   if (!taskToUpdate) {
     return false;
   }
   const updatedTask = body;
   updatedTask.id = idd;
 
-  const index = tasks.findIndex((task: ITask) => {
-    task.id === idd;
-    return true;
-  });
-
+  const index = tasks.findIndex((task: ITask) => task.id === idd);
   tasks[index] = {
     ...updatedTask,
   };

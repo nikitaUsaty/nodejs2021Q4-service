@@ -50,12 +50,10 @@ async function routes(fastify: FastifyInstance) {
     '/boards/:boardId/tasks/:taskId',
     async (request: FastifyPluginOptions, reply) => {
       const result = await taskService.updateTask(
-        request.params.id,
-        request.body,
-        request.params.taskId
+        request.params.boardId,
+        request.params.taskId,
+        request.body
       );
-
-      console.log('WORk!!!!');
 
       if (!result) {
         reply

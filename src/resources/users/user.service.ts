@@ -3,17 +3,32 @@ import IUser from './user.memory.repository';
 export {};
 
 const { v4: uuidv4 } = require('uuid');
-const users = require("./user.memory.repository");
+const users = require('./user.memory.repository');
 const tasks = require('../task/task.memory.repository');
 
-const getAllUsers = () => users;
+/**
+ * Returns all users
+ * @returns all users
+ */
+const getAllUsers = (): IUser[] => users;
 
-const getUserWithId = (id: string) => {
+/**
+ * Returns user with id
+ * @param id:string user id
+ * @returns user by id
+ */
+const getUserWithId = (id: string): IUser => {
   const user = users.find((u: IUser) => u.id === id);
   return user;
 };
 
-const createNewUser = (user: IUser) => {
+/**
+ * Create new user
+ * @param user - IUser user
+ * @returns new created user
+ */
+
+const createNewUser = (user: IUser): IUser => {
   const User = { ...user, id: uuidv4() };
   users.push(User);
   if (User.password) {
@@ -21,6 +36,13 @@ const createNewUser = (user: IUser) => {
   }
   return User;
 };
+
+/**
+ * Update user
+ * @param id - string user id
+ * @param body - IUser users body
+ * @returns updated task
+ */
 
 const updateUser = (
   id: string,
@@ -39,6 +61,12 @@ const updateUser = (
   };
   return updatePerson;
 };
+
+/**
+ * Remove user
+ * @param id - string user's id
+ * @returns message of deletion or error
+ */
 
 const removeUser = (id: string) => {
   const userToDelete = users.find((user: IUser) => user.id === id);

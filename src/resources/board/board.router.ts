@@ -2,8 +2,21 @@ import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 
 const boardService = require('./board.service');
 
+/**
+ * Create board router
+ * @param fastify - framework to create server
+ * @returns depends on the method has been called, returns either
+ * result or throw error
+ */
+
 async function routes(fastify: FastifyInstance) {
   fastify.get('/boards', async () => {
+    /**
+     * Create board
+     * @param board:IBoard receiving board's body
+     * @returns new created board
+     */
+
     const result = await boardService.getAllBoards();
     if (!result) {
       throw new Error('Error, no users data');

@@ -12,6 +12,11 @@ fastify.register(require('./resources/board/board.router'));
 
 fastify.register(require('./resources/task/task.router'));
 
+/**
+ * create server
+ * @returns Promise<void>
+ */
+
 fastify.listen(PORT, (err: string, address: string) => {
   if (err) {
     fastify.log.error(err);

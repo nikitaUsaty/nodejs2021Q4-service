@@ -2,8 +2,16 @@ import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 
 const usersService = require('./user.service');
 
+/**
+ * Create user router
+ * @param fastify - framework to create server
+ * @returns depends on the method has been called, returns either
+ * result or throw error
+ */
+
 async function routes(fastify: FastifyInstance) {
   fastify.get('/', async () => 'Welcome');
+
   fastify.get('/users', async () => {
     const result = await usersService.getAllUsers();
     if (!result) {

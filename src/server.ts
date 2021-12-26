@@ -1,20 +1,12 @@
 import { app } from './logger';
 
-const fastify = require('fastify')({
-  logger: {
-    prettyPrint: true,
-    level: 'info',
-    file: './file.txt',
-  },
-});
-
 const { PORT } = require('./common/config');
 
-fastify.register(require('./resources/users/user.router'));
+app.register(require('./resources/users/user.router'));
 
-fastify.register(require('./resources/board/board.router'));
+app.register(require('./resources/board/board.router'));
 
-fastify.register(require('./resources/task/task.router'));
+app.register(require('./resources/task/task.router'));
 
 /**
  * create server

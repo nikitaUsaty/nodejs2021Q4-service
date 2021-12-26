@@ -2,14 +2,13 @@ import { fastify, FastifyReply, FastifyRequest } from 'fastify';
 
 export const app = fastify({
   logger: {
-    level: 'info', // error, trace, debug, warn
+    level: 'info',
     prettyPrint: {
-      colorize: true, // colorizes the log
+      colorize: true,
       levelFirst: true,
       translateTime: 'yyyy-dd-mm, h:MM:ss TT',
     },
-
-    file: './file.txt', // Will use pino.destination()
+    file: './logs.txt',
   },
 });
 

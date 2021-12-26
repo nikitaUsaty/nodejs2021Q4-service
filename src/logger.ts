@@ -7,13 +7,17 @@ const transport = Pino.transport(<typeof TransportMultiOptions>{
     {
       target: 'pino/file',
       level: 'error',
-      options: { destination: './logs/error.txt', mkdir: true, colorize: true },
+      options: {
+        destination: './logs/errors.txt',
+        mkdir: true,
+        colorize: true,
+      },
     },
     {
       target: 'pino/file',
       level: 'info',
       options: {
-        destination: './logs/logging.txt',
+        destination: './logs/logs.txt',
         mkdir: true,
         colorize: true,
         translateTime: 'yyyy-dd-mm, h:MM:ss TT',

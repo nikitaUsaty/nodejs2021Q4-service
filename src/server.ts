@@ -1,6 +1,10 @@
+import { app } from './logger';
+
 const fastify = require('fastify')({
   logger: {
     prettyPrint: true,
+    level: 'info',
+    file: './file.txt',
   },
 });
 
@@ -17,10 +21,10 @@ fastify.register(require('./resources/task/task.router'));
  * @returns Promise<void>
  */
 
-fastify.listen(PORT, (err: string, address: string) => {
+app.listen(PORT, (err) => {
   if (err) {
-    fastify.log.error(err);
+    app.log.error(err);
     process.exit(1);
   }
-  fastify.log.info(`server listening on ${address}`);
+  app.log.info(`server listening on ${PORT}`);
 });

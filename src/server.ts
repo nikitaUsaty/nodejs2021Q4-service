@@ -17,7 +17,7 @@ app.register(require('./resources/task/task.router'));
  * @returns Promise<void>
  */
 
-app.listen(PORT, (err: string) => {
+app.listen(PORT, '0.0.0.0', (err: string) => {
   if (err) {
     app.log.error(err);
     process.exit(1);

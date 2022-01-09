@@ -1,6 +1,5 @@
 import Pino from 'pino';
 
-// const pino = require('pino');
 const TransportMultiOptions = require('pino');
 const transport = Pino.transport(<typeof TransportMultiOptions>{
   targets: [

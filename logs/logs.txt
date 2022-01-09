@@ -1,0 +1,9 @@
+{"level":30,"time":1641673471231,"pid":35163,"hostname":"mikitausaty","msg":"Server listening at http://127.0.0.1:4000"}
+{"level":30,"time":1641673471231,"pid":35163,"hostname":"mikitausaty","msg":"server listening on 4000"}
+{"level":30,"time":1641673472737,"pid":35163,"hostname":"mikitausaty","reqId":"req-1","req":{"method":"GET","url":"/","hostname":"localhost:4000","remoteAddress":"127.0.0.1","remotePort":50504},"msg":"incoming request"}
+{"level":30,"time":1641673472748,"pid":35163,"hostname":"mikitausaty","reqId":"req-1","res":{"statusCode":200},"responseTime":10.531857013702393,"msg":"request completed"}
+{"level":30,"time":1641673473474,"pid":35163,"hostname":"mikitausaty","reqId":"req-2","req":{"method":"GET","url":"/favicon.ico","hostname":"localhost:4000","remoteAddress":"127.0.0.1","remotePort":50504},"msg":"incoming request"}
+{"level":30,"time":1641673473474,"pid":35163,"hostname":"mikitausaty","reqId":"req-2","msg":"Route GET:/favicon.ico not found"}
+{"level":30,"time":1641673473475,"pid":35163,"hostname":"mikitausaty","reqId":"req-2","res":{"statusCode":404},"responseTime":0.7172069549560547,"msg":"request completed"}
+{"level":30,"time":1641725242179,"pid":45852,"hostname":"mikitausaty","msg":"Server listening at http://127.0.0.1:4000"}
+{"level":30,"time":1641725242179,"pid":45852,"hostname":"mikitausaty","msg":"server listening on 4000"}
